@@ -5,20 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="เว็บไซต์แสดงผลงานและทักษะ Tunwa">
   <title>ความภาคภูมิใจของ Tunwa</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- สไตล์ CSS ทั้งหมดถูกรวมไว้ตรงนี้แล้วครับ -->
+  <style>
+    /* ตั้งค่าให้เลื่อนหน้าจอแบบนุ่มนวล (Smooth Scroll) */
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 60px; /* เว้นพื้นที่ด้านบนไม่ให้โดน Navbar บัง */
+    }
+
+    /* ตั้งค่าระยะเยื้องด้านบนของแต่ละเซกชันเมื่อกดลิงก์ */
+    section {
+      scroll-margin-top: 80px;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* แถบเมนูด้านบน (Navbar) */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    .nav-container a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-container a:hover {
+      color: #007bff; /* เปลี่ยนเป็นสีฟ้าเวลาเอาเมาส์ชี้ */
+    }
+
+    /* ส่วนหัวข้อเว็บ (Header) */
+    header {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    /* กล่องผลงาน (Project Cards) */
+    .project {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* ส่วนท้ายเว็บ (Footer) */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #007bff;
+    }
+
+    /* โค้ดเอฟเฟกต์ Fade In (Scroll Animation) */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    /* สถานะเมื่อเลื่อนหน้าจอมาถึง */
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
+
+  <!-- แถบเมนูสำหรับคลิกเลื่อนหน้าจอ (Smooth Scroll) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#about">เกี่ยวกับผม</a>
+      <a href="#projects">ผลงาน</a>
+      <a href="#skills">ทักษะ</a>
+    </div>
+  </nav>
+
   <header>
     <h1>สวัสดี! ผมคือ Tunwa</h1>
     <p>นี่คือผลงานความภาคภูมิใจของผม</p>
   </header>
 
-  <section id="about">
+  <!-- ใส่คลาส fade-in เพื่อทำแอนิเมชันตอนเลื่อนหน้าจอ -->
+  <section id="about" class="fade-in">
     <h2>เกี่ยวกับผม</h2>
     <p>ผมเป็นนักเรียนที่มีความสนใจในภาษาอังกฤษ</p>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="fade-in">
     <h2>ผลงานของผม</h2>
     <div class="project">
       <h3>เว็บไซต์ Portfolio</h3>
@@ -30,7 +143,7 @@
     </div>
   </section>
   
-  <section id="skills">
+  <section id="skills" class="fade-in">
     <h2>ทักษะของผม</h2>
     <ul>
       <li>HTML, CSS, JavaScript</li>
@@ -45,6 +158,34 @@
     <p>&copy; <span id="year"></span> Tunwa. All rights reserved.</p>
   </footer>
       
-  <script src="script.js"></script>  
+  <!-- โค้ด JavaScript ทั้งหมดถูกรวมไว้ตรงนี้แล้วครับ -->
+  <script>
+    // 1. แสดงปีปัจจุบันใน Footer อัตโนมัติ
+    const yearElement = document.getElementById("year");
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+    // 2. เอฟเฟกต์ Fade In ตอนเลื่อนหน้าจอ (Scroll Animation)
+    const sections = document.querySelectorAll(".fade-in");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target); // ทำงานครั้งเดียวแล้วหยุดตรวจจับเพื่อความลื่นไหล
+            }
+        });
+    }, { 
+        threshold: 0.1 // ให้เริ่มแสดงผลเมื่อเซกชันโผล่มา 10%
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // ข้อความต้อนรับใน Console
+    console.log("Welcome to TUNWA Portfolio");
+  </script>  
 </body>
 </html>
