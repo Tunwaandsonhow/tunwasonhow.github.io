@@ -7,13 +7,15 @@
   <title>TUNWA // PORTFOLIO</title>
 
   <style>
-    /* ตั้งค่าธีมมืด (Dark Mode) และสีนีออน */
+    /* ─── NEW DARK PURPLE & CYBER THEME ─── */
     :root {
-      --bg-color: #0a0a12;
-      --card-bg: #121225;
-      --primary-neon: #00f0ff; /* ฟ้าอินฟินิตี้ */
-      --secondary-neon: #ff007f; /* ชมพูไซเบอร์ */
-      --text-color: #e0e0ff;
+      --bg-color: #05050a;
+      --card-bg: #100b1e;
+      --primary-neon: #bd00ff;   /* ม่วงนีออนเข้มข้น */
+      --secondary-neon: #ff007f; /* ชมพูไซเบอร์ (ใช้ตัดเส้น/เน้นจุดสำคัญ) */
+      --cyan-glow: #00f0ff;      /* ฟ้านีออน (เพิ่มความไฮเทค) */
+      --text-color: #e5def5;
+      --text-muted: #8b80a5;
     }
 
     html {
@@ -29,17 +31,23 @@
       margin: 0;
       padding-top: 70px;
       overflow-x: hidden;
+      /* สร้างมิติแสงสีม่วงลึกลับด้านหลัง */
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(189, 0, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+      background-attachment: fixed;
     }
 
-    /* แถบเมนูลอยแบบโปร่งแสง (Glassmorphism) */
+    /* ─── NAVBAR (Glassmorphism หรูๆ) ─── */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(10, 10, 18, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(5, 5, 10, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(189, 0, 255, 0.2);
       z-index: 1000;
     }
 
@@ -52,7 +60,7 @@
 
     .nav-container a {
       text-decoration: none;
-      color: var(--text-color);
+      color: var(--text-muted);
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -61,42 +69,46 @@
     }
 
     .nav-container a:hover {
-      color: var(--primary-neon);
-      text-shadow: 0 0 10px var(--primary-neon);
+      color: #fff;
+      text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon);
     }
 
-    /* ส่วนหัวสุดอลังการ (Hero Section) */
+    /* ─── HERO SECTION ─── */
     header {
       position: relative;
       text-align: center;
-      padding: 150px 20px;
-      background: radial-gradient(circle at center, #1a1a3a 0%, var(--bg-color) 70%);
-      border-bottom: 2px dashed rgba(255, 0, 127, 0.3);
+      padding: 160px 20px;
+      background: radial-gradient(circle at center, #160a29 0%, var(--bg-color) 70%);
+      border-bottom: 1px solid rgba(255, 0, 127, 0.2);
     }
 
     header h1 {
       margin: 0;
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 6px;
       color: #fff;
-      /* เอฟเฟกต์เรืองแสงสะใจ */
-      text-shadow: 0 0 10px var(--primary-neon), 0 0 30px var(--primary-neon);
+      /* ไล่เฉดสีอักษรขาว-ม่วง พร้อมเรืองแสง */
+      background: linear-gradient(135deg, #fff 30%, #e0b0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 15px rgba(189, 0, 255, 0.6));
     }
 
     header p {
       font-size: 1.2rem;
       color: var(--secondary-neon);
-      text-shadow: 0 0 8px var(--secondary-neon);
-      margin-top: 15px;
+      text-shadow: 0 0 10px var(--secondary-neon);
+      margin-top: 20px;
       font-weight: bold;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    /* การจัดหน้าเซกชัน */
+    /* ─── SECTION STYLE ─── */
     section {
       scroll-margin-top: 100px;
-      padding: 80px 20px;
+      padding: 90px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -107,14 +119,15 @@
       padding-left: 15px;
       margin-bottom: 40px;
       letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      color: #fff;
+      text-shadow: 0 0 15px rgba(189, 0, 255, 0.6);
     }
 
-    /* กล่องผลงานแบบไซเบอร์บอร์ด */
+    /* ─── PROJECT GRID & CARDS ─── */
     .project-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 25px;
+      gap: 30px;
     }
 
     @media (max-width: 768px) {
@@ -123,34 +136,45 @@
 
     .project {
       background: var(--card-bg);
-      padding: 25px;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 0, 127, 0.2);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
+      padding: 30px;
+      border-radius: 8px;
+      border: 1px solid rgba(189, 0, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       position: relative;
       overflow: hidden;
     }
 
+    /* เส้นเรืองแสงด้านซ้ายกล่องผลงาน */
     .project::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
-      background: var(--secondary-neon);
+      top: 0; 
+      left: 0; 
+      width: 4px; 
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-neon), var(--secondary-neon));
     }
 
     .project:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary-neon);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.5);
+      box-shadow: 0 15px 35px rgba(189, 0, 255, 0.25), 0 0 15px rgba(0, 240, 255, 0.1);
     }
 
     .project h3 {
       margin-top: 0;
+      font-size: 1.4rem;
       color: #fff;
+      letter-spacing: 1px;
     }
 
-    /* รายการทักษะ (Skills Tags) เปลี่ยนจากจุดธรรมดาเป็นชิปเรืองแสง */
+    .project p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── SKILLS CHIPS (ชิปเรืองแสงสีม่วง-ฟ้า) ─── */
     .skills-list {
       display: flex;
       flex-wrap: wrap;
@@ -160,35 +184,107 @@
     }
 
     .skills-list li {
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--primary-neon);
-      color: var(--primary-neon);
-      padding: 8px 16px;
+      background: rgba(189, 0, 255, 0.06);
+      border: 1px solid rgba(189, 0, 255, 0.4);
+      color: #dfa3ff;
+      padding: 8px 18px;
       border-radius: 20px;
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       letter-spacing: 1px;
-      box-shadow: inset 0 0 5px rgba(0, 240, 255, 0.2);
+      transition: all 0.3s ease;
     }
 
-    /* ส่วนท้ายเว็บ */
+    .skills-list li:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--cyan-glow);
+      color: var(--cyan-glow);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* ─── FOOTER ─── */
     footer {
-      background-color: #05050a;
+      background-color: #030306;
       text-align: center;
-      padding: 40px 20px;
-      margin-top: 100px;
-      border-top: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 50px 20px;
+      margin-top: 120px;
+      border-top: 1px solid rgba(189, 0, 255, 0.15);
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
     footer a {
       color: var(--secondary-neon);
       text-decoration: none;
       font-weight: bold;
+      transition: all 0.3s ease;
     }
 
     footer a:hover {
-      text-shadow: 0 0 8px var(--secondary-neon);
+      color: #fff;
+      text-shadow: 0 0 10px var(--secondary-neon), 0 0 20px var(--secondary-neon);
     }
 
-    /* เอฟเฟกต์แอนิเมชันสไลด์แบบนุ่มๆ */
-    .fade-
+    /* ─── ANIMATION & UTILITIES ─── */
+    /* เอฟเฟกต์ค่อยๆ โผล่เมื่อโหลดหน้าเว็บสำหรับข้อความสำคัญ */
+    .glow-text-animate {
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 10px rgba(189, 0, 255, 0.5)); }
+      100% { filter: drop-shadow(0 0 20px rgba(255, 0, 127, 0.7)); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+    </div>
+  </nav>
+
+  <header id="home">
+    <h1 class="glow-text-animate">TUNWA</h1>
+    <p>Creative Developer & Cyber Designer</p>
+  </header>
+
+  <section id="projects">
+    <h2>PROJECTS</h2>
+    <div class="project-grid">
+      <div class="project">
+        <h3>Project Alpha</h3>
+        <p>ระบบเว็บแอปพลิเคชันสุดล้ำที่พัฒนาด้วยเทคโนโลยีสมัยใหม่ หน้าจออินเตอร์เฟสใช้งานง่ายและตอบสนองได้รวดเร็ว</p>
+      </div>
+      <div class="project">
+        <h3>Project Beta</h3>
+        <p>การออกแบบ UI/UX สไตล์ Sci-Fi นีออนสำหรับแพลตฟอร์มแห่งอนาคต เน้นประสบการณ์ใช้งานที่น่าตื่นตาตื่นใจ</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>SKILLS & TECH STACK</h2>
+    <ul class="skills-list">
+      <li>HTML5 & CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>UI/UX Cyber Design</li>
+      <li>Responsive Design</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 TUNWA. All Rights Reserved. Crafted with 💜 and Purple Neon.</p>
+    <p>Contact me via <a href="#">Email</a> or <a href="#">GitHub</a></p>
+  </footer>
+
+</body>
+</html>
