@@ -4,188 +4,191 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="เว็บไซต์แสดงผลงานและทักษะ Tunwa">
-  <title>ความภาคภูมิใจของ Tunwa</title>
+  <title>TUNWA // PORTFOLIO</title>
 
-  <!-- สไตล์ CSS ทั้งหมดถูกรวมไว้ตรงนี้แล้วครับ -->
   <style>
-    /* ตั้งค่าให้เลื่อนหน้าจอแบบนุ่มนวล (Smooth Scroll) */
+    /* ตั้งค่าธีมมืด (Dark Mode) และสีนีออน */
+    :root {
+      --bg-color: #0a0a12;
+      --card-bg: #121225;
+      --primary-neon: #00f0ff; /* ฟ้าอินฟินิตี้ */
+      --secondary-neon: #ff007f; /* ชมพูไซเบอร์ */
+      --text-color: #e0e0ff;
+    }
+
     html {
       scroll-behavior: smooth;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      background-color: #f9f9f9;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
     }
 
     body {
       margin: 0;
-      padding-top: 60px; /* เว้นพื้นที่ด้านบนไม่ให้โดน Navbar บัง */
+      padding-top: 70px;
+      overflow-x: hidden;
     }
 
-    /* ตั้งค่าระยะเยื้องด้านบนของแต่ละเซกชันเมื่อกดลิงก์ */
-    section {
-      scroll-margin-top: 80px;
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    /* แถบเมนูด้านบน (Navbar) */
+    /* แถบเมนูลอยแบบโปร่งแสง (Glassmorphism) */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: rgba(10, 10, 18, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
       z-index: 1000;
     }
 
     .nav-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 15px;
+      gap: 30px;
+      padding: 18px;
     }
 
     .nav-container a {
       text-decoration: none;
-      color: #333;
+      color: var(--text-color);
       font-weight: bold;
-      transition: color 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
     }
 
     .nav-container a:hover {
-      color: #007bff; /* เปลี่ยนเป็นสีฟ้าเวลาเอาเมาส์ชี้ */
+      color: var(--primary-neon);
+      text-shadow: 0 0 10px var(--primary-neon);
     }
 
-    /* ส่วนหัวข้อเว็บ (Header) */
+    /* ส่วนหัวสุดอลังการ (Hero Section) */
     header {
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: white;
+      position: relative;
       text-align: center;
-      padding: 100px 20px;
+      padding: 150px 20px;
+      background: radial-gradient(circle at center, #1a1a3a 0%, var(--bg-color) 70%);
+      border-bottom: 2px dashed rgba(255, 0, 127, 0.3);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #fff;
+      /* เอฟเฟกต์เรืองแสงสะใจ */
+      text-shadow: 0 0 10px var(--primary-neon), 0 0 30px var(--primary-neon);
     }
 
-    /* กล่องผลงาน (Project Cards) */
+    header p {
+      font-size: 1.2rem;
+      color: var(--secondary-neon);
+      text-shadow: 0 0 8px var(--secondary-neon);
+      margin-top: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* การจัดหน้าเซกชัน */
+    section {
+      scroll-margin-top: 100px;
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      border-left: 5px solid var(--primary-neon);
+      padding-left: 15px;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    /* กล่องผลงานแบบไซเบอร์บอร์ด */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
     .project {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 0, 127, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ส่วนท้ายเว็บ (Footer) */
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--secondary-neon);
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+
+    .project h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    /* รายการทักษะ (Skills Tags) เปลี่ยนจากจุดธรรมดาเป็นชิปเรืองแสง */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skills-list li {
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--primary-neon);
+      color: var(--primary-neon);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      box-shadow: inset 0 0 5px rgba(0, 240, 255, 0.2);
+    }
+
+    /* ส่วนท้ายเว็บ */
     footer {
-      background-color: #333;
-      color: white;
+      background-color: #05050a;
       text-align: center;
-      padding: 20px;
-      margin-top: 50px;
+      padding: 40px 20px;
+      margin-top: 100px;
+      border-top: 1px solid rgba(0, 240, 255, 0.2);
     }
 
     footer a {
-      color: #007bff;
+      color: var(--secondary-neon);
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    /* โค้ดเอฟเฟกต์ Fade In (Scroll Animation) */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    footer a:hover {
+      text-shadow: 0 0 8px var(--secondary-neon);
     }
 
-    /* สถานะเมื่อเลื่อนหน้าจอมาถึง */
-    .fade-in.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- แถบเมนูสำหรับคลิกเลื่อนหน้าจอ (Smooth Scroll) -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#about">เกี่ยวกับผม</a>
-      <a href="#projects">ผลงาน</a>
-      <a href="#skills">ทักษะ</a>
-    </div>
-  </nav>
-
-  <header>
-    <h1>สวัสดี! ผมคือ Tunwa</h1>
-    <p>นี่คือผลงานความภาคภูมิใจของผม</p>
-  </header>
-
-  <!-- ใส่คลาส fade-in เพื่อทำแอนิเมชันตอนเลื่อนหน้าจอ -->
-  <section id="about" class="fade-in">
-    <h2>เกี่ยวกับผม</h2>
-    <p>ผมเป็นนักเรียนที่มีความสนใจในภาษาอังกฤษ</p>
-  </section>
-
-  <section id="projects" class="fade-in">
-    <h2>ผลงานของผม</h2>
-    <div class="project">
-      <h3>เว็บไซต์ Portfolio</h3>
-      <p>เว็บไซต์นี้เป็นหนึ่งในผลงานที่ผมสร้างขึ้นเพื่อแสดงความสามารถของผม</p>
-    </div>
-    <div class="project">
-      <h3>แอปพลิเคชันจัดการงาน</h3>
-      <p>แอปพลิเคชันที่ช่วยให้ผู้ใช้จัดการงานได้ดีขึ้น</p>
-    </div>
-  </section>
-  
-  <section id="skills" class="fade-in">
-    <h2>ทักษะของผม</h2>
-    <ul>
-      <li>HTML, CSS, JavaScript</li>
-      <li>Python, Django</li>
-      <li>Git และ GitHub</li>
-      <li>การออกแบบ UI/UX</li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>ติดต่อผมได้ที่: <a href="mailto:tunwasonhow@gmail.com">tunwasonhow@gmail.com</a></p>
-    <p>&copy; <span id="year"></span> Tunwa. All rights reserved.</p>
-  </footer>
-      
-  <!-- โค้ด JavaScript ทั้งหมดถูกรวมไว้ตรงนี้แล้วครับ -->
-  <script>
-    // 1. แสดงปีปัจจุบันใน Footer อัตโนมัติ
-    const yearElement = document.getElementById("year");
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-
-    // 2. เอฟเฟกต์ Fade In ตอนเลื่อนหน้าจอ (Scroll Animation)
-    const sections = document.querySelectorAll(".fade-in");
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-                observer.unobserve(entry.target); // ทำงานครั้งเดียวแล้วหยุดตรวจจับเพื่อความลื่นไหล
-            }
-        });
-    }, { 
-        threshold: 0.1 // ให้เริ่มแสดงผลเมื่อเซกชันโผล่มา 10%
-    });
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    // ข้อความต้อนรับใน Console
-    console.log("Welcome to TUNWA Portfolio");
-  </script>  
-</body>
-</html>
+    /* เอฟเฟกต์แอนิเมชันสไลด์แบบนุ่มๆ */
+    .fade-
